@@ -32,10 +32,10 @@ public class ProductResource
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/{id}") // /categories/ + alguma coisa
+    @GetMapping(value = "/{id}") // /product/ + alguma coisa
     public ResponseEntity<Product> findById(@PathVariable Long id)
     {
-        Product cat = productRepository.findById(id);
+        Product cat = productRepository.findById(id).get();
         return ResponseEntity.ok().body(cat);
     }
 }

@@ -1,17 +1,25 @@
 package com.devsuperior.myFirstProject.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+// O Jpa eh utilizado para traduzir os objetos para tabelas do BD.
+// Estas anotacoes estao informando ao JPA as entidades do negocio
+@Entity
 public class Product implements Serializable
 {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Double price;
 
     //Associação
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Product(){}

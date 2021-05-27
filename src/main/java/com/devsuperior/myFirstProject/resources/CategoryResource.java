@@ -36,7 +36,8 @@ public class CategoryResource
     @GetMapping(value = "/{id}") // /categories/ + alguma coisa
     public ResponseEntity<Category> findById(@PathVariable Long id)
     {
-        Category cat = categoryRepository.findById(id);
+        // .get para obter o objeto que esta dentro no option
+        Category cat = categoryRepository.findById(id).get();
         return ResponseEntity.ok().body(cat);
     }
 }

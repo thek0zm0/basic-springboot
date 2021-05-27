@@ -2,12 +2,14 @@ package com.devsuperior.myFirstProject.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Category implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -18,11 +20,14 @@ public class Category implements Serializable
        Primeiro: Utilizemos null.
        Segundo: É importante também para que o tipo aceite qualquer tipo de herança e polimorfismo.
     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     // Tomar cuidado com associação ciclica
     @JsonIgnore
+    @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
 
     public Category(){}
